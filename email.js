@@ -13,6 +13,7 @@ let transporter = mailer.createTransport({
   port: 465,
 });
 
+//sending mail to person with email
 const sendMail = (email) => {
   let mailOptions = {
     from: process.env.MAIL_FROM,
@@ -30,6 +31,7 @@ const sendMail = (email) => {
   });
 }
 
+//sending mail to everyone
 const mailing = () => {
   const fortytwo = '@student.42seoul.kr';
 

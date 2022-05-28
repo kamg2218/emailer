@@ -3,7 +3,7 @@ sending email system
 
 ## names.txt
 
-연체자 리스트
+이메일 수신자 명단
 
 ## overdue.txt
 

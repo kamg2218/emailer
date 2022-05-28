@@ -16,7 +16,7 @@ let transporter = mailer.createTransport({
 //sending mail to person with email
 const sendMail = (email) => {
   let mailOptions = {
-    from: process.env.MAIL_FROM,
+    from: `42CABI <${process.env.MAIL_FROM}>`,
     to: email,
     subject: '42CABI 사물함 연체 알림',
     text: fs.readFileSync('./overdue.txt', 'utf8'),

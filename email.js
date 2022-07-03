@@ -11,6 +11,11 @@ let transporter = mailer.createTransport({
   },
   secure: true,
   port: 465,
+  tls: {
+    maxVersion: process.env.MAIL_TLS_MAXVERSION,
+    minVersion: process.env.MAIL_TLS_MINVERSION,
+    ciphers: process.env.MAIL_TLS_CIPHERS,
+  }
 });
 
 //sending mail to person with email
@@ -35,15 +40,22 @@ const sendMail = (email) => {
 const mailing = () => {
   const fortytwo = '@student.42seoul.kr';
 
-  let data = fs.readFileSync('./names.txt', 'utf8');
+  // let data = fs.readFileSync('./names.txt', 'utf8');
+  let data = fs.readFileSync('./test.txt', 'utf8');
   while (data) {
     let idx = data.indexOf('\n');
+    //공백 제거
     if (idx == -1) {
+      data = data.replace(/(\s*)/g, "");
+      // console.log(data);
       sendMail(data + fortytwo);
       break ;
     } else {
       let mail = data.slice(0, idx);
+      //공백 제거
+      mail = mail.replace(/(\s*)/g, "");
       if (mail !== '') {
+        // console.log(mail)
         sendMail(mail + fortytwo);
       }
       data = data.slice(idx + 1);
